@@ -1,3 +1,5 @@
+@using System.Text.RegularExpressions
+
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <a class="navbar-brand" href="#">CyberSoft</a>
     <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId"
@@ -5,14 +7,14 @@
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" href="/" aria-current="page">Home <span
-                        class="visually-hidden">(current)</span></a>
+                <NavLink ActiveClass="bg-white text-dark" class="nav-link active" href="/" aria-current="page" Match="NavLinkMatch.All">Home<span
+                        class="visually-hidden">(current)</span></NavLink>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+                <NavLink ActiveClass="bg-white text-dark" class="nav-link" href="/register" Match="NavLinkMatch.All">Register</NavLink>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <NavLink ActiveClass="bg-white text-dark" class="nav-link" href="/login" Match="NavLinkMatch.All">Login</NavLink>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
