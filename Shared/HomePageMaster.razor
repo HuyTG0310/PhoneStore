@@ -1,15 +1,14 @@
 @inherits LayoutComponentBase
 
-<Header />
 
-<div style="min-height: 75vh">
-    @Body
+<div class="d-flex flex-column min-vh-100">
+
+    <Nav />
+
+    <div class="flex-grow-1">
+        @Body
+    </div>
+
+    <Footer />
+
 </div>
-
-
-
-
-
-<footer class="bg-dark text-white p-3 text-center fs-3">
-    Footer
-</footer>

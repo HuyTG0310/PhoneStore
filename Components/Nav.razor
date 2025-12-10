@@ -1,0 +1,55 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg py-3 mb-5" 
+         style="background: linear-gradient(90deg, #0f2027 0%, #203a43 50%, #2c5364 100%);">
+        
+        <div class="container">
+            <a class="navbar-brand fs-3 fw-bold text-uppercase d-flex align-items-center" href="/">
+                <i class="bi bi-phone-vibrate text-warning me-2"></i> 
+                <span>Phone<span class="text-info">Store</span></span>
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                
+                <form class="d-flex mx-auto my-3 my-lg-0 w-50" role="search">
+                    <div class="input-group">
+                        <input class="form-control border-0" type="search" placeholder="Tìm kiếm iPhone, Samsung..." aria-label="Search">
+                        <button class="btn btn-warning text-dark fw-bold" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item me-3">
+                        <NavLink class="nav-link text-white opacity-75-hover" href="/" Match="NavLinkMatch.All">Trang chủ</NavLink>
+                    </li>
+
+                    <li class="nav-item me-3">
+                        <NavLink class="btn btn-outline-light rounded-pill px-4" href="/login">
+                            Đăng nhập
+                        </NavLink>
+                    </li>
+                    
+                    <li class="nav-item me-3">
+                        <NavLink class="btn btn-outline-light rounded-pill px-4" href="/register">
+                            Đăng ký
+                        </NavLink>
+                    </li>
+
+                    <li class="nav-item">
+                        <NavLink class="btn btn-light position-relative rounded-circle p-2 text-primary" href="/cart" style="width: 45px; height: 45px;">
+                            <i class="bi bi-cart-fill fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light">
+                                3 <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

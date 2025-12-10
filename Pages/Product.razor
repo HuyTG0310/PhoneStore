@@ -1,0 +1,128 @@
+@page "/"
+
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+@using MyBlazorProject.Models
+
+
+<div class="container">
+    <div class="mb-3">
+        <label class="form-label" for="name">Tên sản phẩm</label>
+        <input @bind="@SearchInput" type="text" id="name" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Mức giá</label>
+        <select @bind="@PriceInput" class="form-select">
+            <option selected value="">Tất cả</option>
+            <option value="1">5-10tr</option>
+            <option value="2">10-20tr</option>
+            <option value="3">20-45tr</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Sắp xếp theo</label>
+        <select @bind="@SortType" class="form-select">
+            <option selected value="">Mặc định</option>
+            <option value="1">A-Z</option>
+            <option value="2">Giá tăng dần</option>
+            <option value="3">Giá giảm dần</option>
+        </select>
+    </div>
+
+    <div class="form-check mb-3">
+        <input @bind="@InStockInput" class="form-check-input" id="avai" type="checkbox">
+        <label class="form-check-label" for="avai">Còn hàng</label>
+    </div>
+
+    <hr />
+
+    <h3 class="text-center my-4">Danh Sách Sản Phẩm</h3>
+
+    @{
+        List<Phone> ResultList = pm.SearchList(PhoneList, SearchInput, PriceInput, InStockInput);
+
+        if (!ResultList.Any())
+        {
+            <p class="alert alert-danger">Không tìm thấy sản phẩm</p>
+        }
+        else
+        {
+            pm.Sort(ResultList, SortType);
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Hãng</th>
+                        <th scope="col">Giá (VND)</th>
+                        <th scope="col">Còn hàng</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 0; i < ResultList.Count; i++)
+                    {
+                        Phone p = @ResultList[i];
+                        <tr>
+                            <th scope="row">@(i + 1)</th>
+                            <td>@p.Name</td>
+                            <td><span class="@p.getBrandClass()">@p.getBrand()</span></td>
+                            <td>@p.FormatMoney()</td>
+                            @if (@p.InStock == true)
+                            {
+                                <td><i class="bi bi-check-lg text-success fs-5"></i></td>
+                            }
+                            else
+                            {
+                                <td><i class="bi bi-x-lg text-danger fs-5"></i></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+</div>
+
+@code {
+    string SearchInput = "";
+    string PriceInput = "";
+    bool InStockInput = false;
+
+    string SortType = "";
+
+    PhoneManagement pm = new PhoneManagement();
+    private List<Phone> PhoneList = new List<Phone>
+{
+// --- IPHONE ---
+new Phone("Iphone 17 Pro Max", 39990000, true),
+new Phone("Iphone 15 Standard", 21500000, true),
+new Phone("Iphone SE (Gen 4)", 11990000, false),
+new Phone("Iphone 16 Plus", 27000000, true),
+new Phone("Iphone 14 Standard", 17500000, false),
+new Phone("Iphone 17", 32000000, true),
+new Phone("Iphone 15 Pro", 35990000, true),
+
+// --- SAMSUNG ---
+new Phone("Samsung S24 Ultra", 29990000, true),
+new Phone("Samsung A55 5G", 8990000, false),
+new Phone("Samsung Z Fold 6", 45000000, true),
+new Phone("Samsung S23 FE", 12500000, false),
+new Phone("Samsung Flip 5", 19990000, true),
+new Phone("Samsung M34", 6500000, true),
+new Phone("Samsung A35", 7990000, false),
+
+// --- XIAOMI ---
+new Phone("Xiaomi 14 Pro", 20990000, true),
+new Phone("Xiaomi Redmi Note 13", 5990000, true),
+new Phone("Xiaomi Poco X6", 7500000, false),
+new Phone("Xiaomi 13T", 11500000, true),
+new Phone("Xiaomi Black Shark 6", 16000000, true),
+new Phone("Xiaomi Redmi K70", 9990000, false)
+};
+
+}
